@@ -8,8 +8,5 @@ router.get("/details", (request, response) => {
     response.render("details")
 });
 
-router.get("/about", (request, response) => {
-    response.render("about")
-});
 
 module.exports = router;
