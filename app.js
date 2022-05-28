@@ -7,7 +7,7 @@ app.set("view engine", "handlebars");
 app.set("views","Resources/views")
 
 app.get("/", (request, response) => {
-    response.send("we all hate javascript")
+    response.render("index")
 });
 
 app.get("/about", (request, response) => {
