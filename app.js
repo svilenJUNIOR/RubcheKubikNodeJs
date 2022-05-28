@@ -5,6 +5,8 @@ var app = express();
 app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 app.set("views","Resources/views")
+app.use(express.static("Resources"))
+
 
 app.get("/", (request, response) => {
     response.render("index")
