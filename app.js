@@ -1,7 +1,16 @@
 var express = require("express")
-var engine = express();
+var handlebars = require("express-handlebars")
 
-engine.get("/", (request, response) => {
+var app = express();
+app.engine("handlebars", handlebars.engine());
+app.set("view engine", "handlebars");
+app.set("views","Resources/views")
+
+app.get("/", (request, response) => {
     response.send("we all hate javascript")
 });
-engine.listen(5000);
+
+app.get("/about", (request, response) => {
+    response.render("about")
+})
+app.listen(5000);
