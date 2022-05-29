@@ -9,6 +9,7 @@ app.set("view engine", "handlebars");
 app.set("views","Resources/Views")
 
 app.use(express.static("Resources"))
+app.use(express.urlencoded({extended: false}));
 app.use(router)
 
 app.listen(5000);
