@@ -18,7 +18,7 @@ router.post("/create", (request, response) => {
        var cube = request.body;
        dataBase.push(cube);
 
-       fs.writeFile(path.resolve("src", "DataBase.json"), JSON.stringify(dataBase))
+       fs.writeFile(path.resolve("src", "DataBase.json"), JSON.stringify(dataBase, "", 4))
        .then(() => {
            response.redirect("/")
        })
