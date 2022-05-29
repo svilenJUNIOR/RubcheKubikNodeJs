@@ -1,6 +1,8 @@
 var router = require("express").Router();
 var cubeValidator = require("../Validator/CubeValidator")
 var fs = require("fs/promises")
+var path = require("path");
+
 var dataBase = require("../DataBase.json");
 
 router.get("/create", (request, response) => {
@@ -16,7 +18,7 @@ router.post("/create", (request, response) => {
        var cube = request.body;
        dataBase.push(cube);
 
-       fs.writeFile("../DataBase.json", JSON.stringify(dataBase))
+       fs.writeFile(path.resolve("src", "DataBase.json"), JSON.stringify(dataBase))
        .then(() => {
            response.redirect("/")
        })
