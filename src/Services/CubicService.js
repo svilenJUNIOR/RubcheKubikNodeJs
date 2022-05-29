@@ -3,6 +3,7 @@ var path = require("path");
 
 var dataBase = require("../DataBase.json");
 
+exports.GetCubeDetails = (Id) => dataBase[Id]
 
 exports.AddNewCube = (request, response) => {
     var cube = request.body;

@@ -14,9 +14,10 @@ router.post("/create", (request, response) => {
 
 });
 
-router.get("/details", (request, response) => {
-    response.render("details")
-});
+router.get("/details/:Id", (request, response) => {
+    var cube = cubeService.GetCubeDetails(request.params.Id);
 
+    response.render("details", {cube});
+});
 
 module.exports = router;
