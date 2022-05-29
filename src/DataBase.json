@@ -22,5 +22,11 @@
         "description": "test",
         "imageUrl": "https://imgs.search.brave.com/3ruoHUzREbYofKUEqplMpptJ7DCMNERW8GASU1iZWLc/rs:fit:960:538:1/g:ce/aHR0cHM6Ly93d3cu/YXV0b3Nwb3J0LmJl/L2kvODAwL3VwbG9h/ZC9jMGFmNzc0Yzhi/ODdiMmRiNmU3NjQ2/NjNiYjIxZjg3YzVj/NWRiYzNmLmpwZw",
         "difficultyLevel": "6"
+    },
+    {
+        "name": "ffqw",
+        "description": "ffasf",
+        "imageUrl": "https://imgs.search.brave.com/3ruoHUzREbYofKUEqplMpptJ7DCMNERW8GASU1iZWLc/rs:fit:960:538:1/g:ce/aHR0cHM6Ly93d3cu/YXV0b3Nwb3J0LmJl/L2kvODAwL3VwbG9h/ZC9jMGFmNzc0Yzhi/ODdiMmRiNmU3NjQ2/NjNiYjIxZjg3YzVj/NWRiYzNmLmpwZw",
+        "difficultyLevel": "1"
     }
 ]
