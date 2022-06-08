@@ -11,12 +11,8 @@ router.post("/create", (request, response) => {
    else cubeService.AddNewCube(request, response);
 });
 
-
-
-
-
 // fix
-router.get("/details/Id", (request, response) => {
+router.get("/details/:Id", (request, response) => {
     var cube = cubeService.GetCubeDetails(request.params.Id);
 
     response.render("details", {cube});
