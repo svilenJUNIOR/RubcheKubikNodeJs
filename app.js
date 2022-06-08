@@ -1,7 +1,8 @@
 var express = require("express")
+var app = express();
 var handlebars = require("express-handlebars")
 var router = require("./src/Routers/Router")
-var app = express();
+var { ConnectWithDataBase } = require("./Data/DBContext/MongoDbContext")
 
 app.engine("handlebars", handlebars.engine());
 
@@ -12,4 +13,10 @@ app.use(express.static("Resources"))
 app.use(express.urlencoded({extended: false}));
 app.use(router)
 
-app.listen(5000);
+ConnectWithDataBase()
+.then(() => {
+    app.listen(5000)
+})
+.catch((error) => {
+    console.log("Error " + error);
+});

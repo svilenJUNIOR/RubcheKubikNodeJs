@@ -4,7 +4,7 @@
   "description": "SoftUni exercise part of JS Web Module ( Js Back End course ) \r The application will be developed through the course's run.",
   "main": "app.js",
   "scripts": {
-   "start": "nodemon app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,8 @@
   "homepage": "https://github.com/svilenJUNIOR/RubcheKubikNodeJs#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6"
+    "express-handlebars": "^6.0.6",
+    "mongoose": "^6.3.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
