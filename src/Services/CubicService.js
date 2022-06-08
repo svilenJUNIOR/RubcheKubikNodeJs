@@ -17,3 +17,8 @@ exports.AddNewCube = (request, response) => {
         response.status(400).send(error);
     });
 };
+
+exports.GetSearchResult = (request, response) => {
+    var cube = cubeService.GetSearchResult(Name => Name == request.body.search);
+    console.log(cube);
+}
