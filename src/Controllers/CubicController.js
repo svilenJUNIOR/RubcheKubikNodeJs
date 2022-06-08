@@ -1,7 +1,6 @@
 var router = require("express").Router();
 var cubeValidator = require("../Validator/CubeValidator")
 var cubeService = require("../Services/CubicService");
-const { redirect } = require("express/lib/response");
 
 router.get("/create", (request, response) => response.render("create"));
 

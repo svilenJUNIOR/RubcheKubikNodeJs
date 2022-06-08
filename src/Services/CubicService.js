@@ -7,9 +7,7 @@ exports.GetCubeDetails = (Id) => dataBase[Id]
 
 exports.AddNewCube = (request, response) => Cube.create(request.body)
 
-
-// not implemented
-exports.GetSearchResult = (request, response) => {
-    var cube = cubeService.GetSearchResult(Name => Name == request.body.search);
-    console.log(cube);
-}
+exports.getAll = async () => {
+    var cubes = await Cube.find().lean();
+    return cubes;
+} 
