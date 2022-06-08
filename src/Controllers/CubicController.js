@@ -11,7 +11,7 @@ router.post("/create", (request, response) => {
     if (!check) return response.status(400).send("Invalid request!")
     else {
         cubeService.AddNewCube(request, response);
-        return redirect("/");
+        response.redirect("/");
     }
 });
 
