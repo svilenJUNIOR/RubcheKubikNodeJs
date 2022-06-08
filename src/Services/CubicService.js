@@ -3,6 +3,7 @@ var path = require("path");
 
 var dataBase = require("../DataBase.json");
 
+// fix
 exports.GetCubeDetails = (Id) => dataBase[Id]
 
 exports.AddNewCube = (request, response) => {
@@ -17,7 +18,7 @@ exports.AddNewCube = (request, response) => {
         response.status(400).send(error);
     });
 };
-
+// not implemented
 exports.GetSearchResult = (request, response) => {
     var cube = cubeService.GetSearchResult(Name => Name == request.body.search);
     console.log(cube);
