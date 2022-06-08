@@ -1,5 +1,6 @@
 var accessoryService = require("../Services/AccessoryService");
 var accessoryValidator = require("../Validator/AccessoryValidator")
+var cubeService = require("../Services/CubicService");
 
 var router = require("express").Router();
 
@@ -16,7 +17,11 @@ router.post("/create", (request, response) => {
     }
 });
 
-// add id
-router.get("/attach", (request, response) => response.render("attachAccessory"));
+router.get("/attach/:Id", async (request, response) => {
+    var cube = await cubeService.GetById(request.params.Id).lean();
+    var accessories = await accessoryService.GetAll();
+
+    response.render("attach", {cube,accessories});
+});
 
 module.exports = router;

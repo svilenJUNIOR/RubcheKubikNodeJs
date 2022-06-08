@@ -6,6 +6,7 @@ exports.ValidateAccessory= (request) => {
     console.log(name)
     console.log(description)
     console.log(pictureUrl)
+    
     if (!name || !description || !pictureUrl) return false;
 
     else return true;

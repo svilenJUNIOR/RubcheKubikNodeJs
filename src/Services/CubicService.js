@@ -1,6 +1,6 @@
 var Cube = require("../../Data/Models/Cube");
 
-exports.GetCubeDetails = (Id) => Cube.findById(Id);
+exports.GetById = (Id) => Cube.findById(Id);
 
 exports.AddNewCube = (request, response) => Cube.create(request.body)
 

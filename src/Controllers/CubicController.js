@@ -15,7 +15,7 @@ router.post("/create", (request, response) => {
 });
 
 router.get("/details/:Id", async (request, response) => {
-    var cube = await cubeService.GetCubeDetails(request.params.Id).lean();
+    var cube = await cubeService.GetById(request.params.Id).lean();
     
     response.render("details", { cube });
 });
