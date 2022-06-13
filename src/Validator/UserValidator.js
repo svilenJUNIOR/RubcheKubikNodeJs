@@ -1,4 +1,4 @@
-exports.ValidateRegistration = (...params) => {
+exports.ValidateUser = (...params) => {
     var check = true;
 
     if (params.includes('')) check = false;

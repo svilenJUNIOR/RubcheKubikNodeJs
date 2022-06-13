@@ -1,6 +1,11 @@
 var cubeValidator = require("../Validator/CubeValidator")
 var cubeService = require("../Services/CubicService");
+
+var accessoryValidator = require("../Validator/AccessoryValidator");
 var accessoryService = require("../Services/AccessoryService");
+
+var userValidator = require("../Validator/UserValidator")
+var userService = require("../Services/UserService");
 
 exports.AddCube = (request, response) => {
     var check = cubeValidator.ValidateCube(request.body);
@@ -36,11 +41,22 @@ exports.AddAccessory = (request, response) => {
 }
 
 exports.UserRegister = (request, response) => {
-    var check = userValidator.ValidateRegistration(request.body);
+    var check = userValidator.ValidateUser(request.body);
 
     if (!check) return response.status(400).send("Invalid request!")
     else {
         userService.Register(request, response);
+        response.redirect("/");
+    }
+}
+
+exports.UserLogin = async (request, response) => {
+    var check = userValidator.ValidateUser(request.body);
+
+    if (!check) return response.status(400).send("Invalid request!")
+    else {
+        var token = await userService.Login(request, response);
+        response.cookie("is you cool", token);
         response.redirect("/");
     }
 }
