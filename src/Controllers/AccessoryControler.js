@@ -1,26 +1,14 @@
-var accessoryService = require("../Services/AccessoryService");
-var accessoryValidator = require("../Validator/AccessoryValidator")
-
+var engine = require("../Services/Engine");
 var router = require("express").Router();
-
-router.get("/all", async (request, response) => {
-    var accessories = await accessoryService.GetAll();
-
-    response.render("allAccessories", {accessories});
-});
+var accessoryService = require("../Services/AccessoryService");
 
 router.get("/create", (request, response) => response.render("createAccessory"));
 
-router.post("/create", (request, response) => {
-    var check = accessoryValidator.ValidateAccessory(request);
+router.get("/all", async (request, response) => {
+    var accessories = await accessoryService.GetAll();
+    response.render("allAccessories",{ accessories });
+}); 
 
-    if (!check) return response.status(400).send("Invalid request!")
-
-    else {
-        accessoryService.AddNewAccessory(request, response);
-        response.redirect("/");
-    }
-});
-
+router.post("/create", (request, response) => engine.AddAccessory(request, response));
 
 module.exports = router;

@@ -1,11 +1,8 @@
-exports.ValidateRegistration = (request) => {
-    var username = request.body.username;
-    var password = request.body.username;
-    var repeatPassword = request.body.username;
+exports.ValidateRegistration = (...params) => {
+    var check = true;
 
-    if (!username || !password || !repeatPassword || password !== repeatPassword)
-        return false;
+    if (params.includes('')) check = false;
+    if (params.password !== params.repeatPassword) check = false;
 
-    else
-        return true;
+    return check;
 };
