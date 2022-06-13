@@ -15,16 +15,18 @@ router.post("/create", (request, response) => {
     }
 });
 
+router.get("/edit", (request, response) => {
+    response.render("editCubePage")
+})
+
+router.get("/delete", (request, response) => {
+    response.render("deleteCubePage")
+})
+
 router.get("/details/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean().populate("accessories");
     response.render("details", { cube });
 });
-// not implemented
-router.get("/search", (request, response) => {
-    var cubes = cubeService.GetSearchResult(request, response)
-
-    response.render("index", { cubes })
-})
 
 router.get("/attach/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean();
