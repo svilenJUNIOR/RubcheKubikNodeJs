@@ -2,10 +2,10 @@ var router = require("express").Router();
 var cubeService = require("../Services/CubicService");
 var accessoryService = require("../Services/AccessoryService");
 var engine = require("../Services/Engine");
-var { IsICool , IsIOwner} = require("../Middlewares/UserMiddlewear");
+var { IsICool } = require("../Middlewares/UserMiddlewear");
 
 router.get("/create", IsICool, (request, response) => response.render("Cube/create"));
-router.get("/delete/:Id", IsIOwner, (request, response) => response.render("Cube/delete"));
+router.get("/delete/:Id", (request, response) => response.render("Cube/delete"));
 
 router.get("/details/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean().populate("accessories");
@@ -16,7 +16,7 @@ router.get("/edit/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean();
     console.log(request.user);
     response.render("Cube/edit", { cube });
-}); 
+});
 
 router.get("/attach/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean();
@@ -26,14 +26,30 @@ router.get("/attach/:Id", async (request, response) => {
 
 router.post("/create", (request, response) => engine.AddCube(request, response));
 router.post("/attach/:Id", async (request, response) => engine.AttachAccessoryToCube(request, response));
+
 router.post("/delete/:Id", async (request, response) => {
-    await cubeService.Delete(request.params.Id)
+    var cube = await cubeService.GetById(request.params.Id)
+
+    if (cube.owner != request.user._id) {
+        response.render("401");
+        return;
+    }
+
+    else await cubeService.Delete(cube._id)
+
     response.redirect("/");
 });
 
 router.post("/edit/:Id", async (request, response) => {
-   await cubeService.Edit(request.params.Id, request.body);
-   response.redirect('/');
+    var cube = await cubeService.GetById(request.params.Id)
+
+    if (cube.owner != request.user._id) {
+        response.render("401");
+        return;
+    }
+    
+    await cubeService.Edit(request.params.Id, request.body);
+    response.redirect('/');
 });
 
 module.exports = router;

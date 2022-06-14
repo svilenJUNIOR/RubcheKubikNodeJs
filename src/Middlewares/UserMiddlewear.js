@@ -24,8 +24,3 @@ exports.IsICool = (request, response, next) => {
     if (!request.user) response.redirect("/");
     next();
 }
-
-exports.IsIOwner = (request, response ,next) => {
-    if (request.params.Id != request.user._id) response.render("401");
-    next();
-}
