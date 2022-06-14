@@ -4,7 +4,7 @@ var accessoryService = require("../Services/AccessoryService");
 var engine = require("../Services/Engine");
 
 router.get("/create", (request, response) => response.render("create"));
-router.get("/delete", (request, response) => response.render("deleteCubePage"));
+router.get("/delete/:Id", (request, response) => response.render("deleteCubePage"));
 
 router.get("/details/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean().populate("accessories");
@@ -24,6 +24,10 @@ router.get("/attach/:Id", async (request, response) => {
 
 router.post("/create", (request, response) => engine.AddCube(request, response));
 router.post("/attach/:Id", async (request, response) => engine.AttachAccessoryToCube(request, response));
+router.post("/delete/:Id", async (request, response) => {
+    await cubeService.Delete(request.params.Id)
+    response.redirect("/");
+});
 
 router.post("/edit/:Id", async (request, response) => {
    await cubeService.Edit(request.params.Id, request.body);
