@@ -2,10 +2,10 @@ var router = require("express").Router();
 var cubeService = require("../Services/CubicService");
 var accessoryService = require("../Services/AccessoryService");
 var engine = require("../Services/Engine");
-var { IsICool } = require("../Middlewares/UserMiddlewear");
+var { IsICool , IsIOwner} = require("../Middlewares/UserMiddlewear");
 
 router.get("/create", IsICool, (request, response) => response.render("Cube/create"));
-router.get("/delete/:Id", (request, response) => response.render("Cube/delete"));
+router.get("/delete/:Id", IsIOwner, (request, response) => response.render("Cube/delete"));
 
 router.get("/details/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean().populate("accessories");
