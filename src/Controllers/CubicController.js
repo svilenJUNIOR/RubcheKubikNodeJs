@@ -35,7 +35,7 @@ router.post("/delete/:Id", async (request, response) => {
         return;
     }
 
-    else await cubeService.Delete(cube._id)
+    else await cubeService.Delete(request.params.Id)
 
     response.redirect("/");
 });
@@ -47,7 +47,7 @@ router.post("/edit/:Id", async (request, response) => {
         response.render("401");
         return;
     }
-    
+
     await cubeService.Edit(request.params.Id, request.body);
     response.redirect('/');
 });

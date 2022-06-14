@@ -12,6 +12,7 @@ exports.Verify = async (request, response, next) => {
             let decodedToken = await jwtVerify(token, secret);
 
             request.user = decodedToken;
+            response.locals.user = decodedToken;
         }
         catch(error){
             return response.redirect("/");
