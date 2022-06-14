@@ -1,3 +1,5 @@
+var { cookie } = require("../../Resources/Constants/Values")
+
 var cubeValidator = require("../Validator/CubeValidator")
 var cubeService = require("../Services/CubicService");
 
@@ -56,7 +58,7 @@ exports.UserLogin = async (request, response) => {
     if (!check) return response.status(400).send("Invalid request!")
     else {
         var token = await userService.Login(request, response);
-        response.cookie("is you cool", token);
+        response.cookie(cookie, token);
         response.redirect("/");
     }
 }

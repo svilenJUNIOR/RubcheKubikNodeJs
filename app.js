@@ -3,7 +3,8 @@ var app = express();
 var cookieParser = require("cookie-parser");
 var handlebars = require("express-handlebars")
 var router = require("./src/Routers/Router")
-var { ConnectWithDataBase } = require("./Data/DBContext/MongoDbContext")
+var { Verify } = require("./src/Middlewares/UserMiddlewear");
+var { ConnectWithDataBase } = require("./Data/DBContext/MongoDbContext");
 
 app.engine("handlebars", handlebars.engine());
 
@@ -13,6 +14,7 @@ app.set("views","Resources/Views")
 app.use(express.static("Resources"))
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
+app.use(Verify);
 app.use(router)
 
 ConnectWithDataBase()

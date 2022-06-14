@@ -13,6 +13,7 @@ router.get("/details/:Id", async (request, response) => {
 
 router.get("/edit/:Id", async (request, response) => {
     var cube = await cubeService.GetById(request.params.Id).lean();
+    console.log(request.user);
     response.render("Cube/edit", { cube });
 }); 
 
