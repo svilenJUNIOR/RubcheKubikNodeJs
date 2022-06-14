@@ -65,3 +65,8 @@ exports.UserLogin = async (request, response) => {
         response.redirect("/");
     }
 }
+
+exports.LogOut = (request, response) => {
+    response.clearCookie(cookie);
+    response.redirect("/");
+};

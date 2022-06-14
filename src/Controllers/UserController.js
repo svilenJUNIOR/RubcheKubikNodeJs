@@ -3,6 +3,7 @@ var engine = require("../Services/Engine");
 
 router.get("/register", (request, response) => response.render("User/register"));
 router.get("/login", (request, response) => response.render("User/login"));
+router.get("/logout", (request, response) => engine.LogOut(request,response));
 
 router.post("/register", (request, response) => engine.UserRegister(request, response));
 router.post("/login", (request,response) => engine.UserLogin(request, response));
