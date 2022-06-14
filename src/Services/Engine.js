@@ -14,7 +14,10 @@ exports.AddCube = (request, response) => {
 
     if (!check) return response.status(400).send("Invalid request!")
     else {
-        cubeService.AddNewCube(request, response);
+        var toCreate = request.body;
+        toCreate.owner = request.user._id;
+
+        cubeService.AddNewCube(toCreate, response);
         response.redirect("/");
     }
 }
