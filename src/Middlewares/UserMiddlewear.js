@@ -19,3 +19,8 @@ exports.Verify = async (request, response, next) => {
     }
     next();
 }
+
+exports.IsICool = (request, response, next) => {
+    if (!request.user) response.redirect("/");
+    next();
+}

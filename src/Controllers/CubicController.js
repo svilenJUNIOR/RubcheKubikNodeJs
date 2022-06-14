@@ -2,8 +2,9 @@ var router = require("express").Router();
 var cubeService = require("../Services/CubicService");
 var accessoryService = require("../Services/AccessoryService");
 var engine = require("../Services/Engine");
+var { IsICool } = require("../Middlewares/UserMiddlewear");
 
-router.get("/create", (request, response) => response.render("Cube/create"));
+router.get("/create", IsICool, (request, response) => response.render("Cube/create"));
 router.get("/delete/:Id", (request, response) => response.render("Cube/delete"));
 
 router.get("/details/:Id", async (request, response) => {

@@ -1,7 +1,7 @@
 var hasher = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var User = require("../../Data/Models/User");
-var { secret } = require("../../Resources/Constants/Values")
+var { secret , period } = require("../../Resources/Constants/Values")
 
 exports.Register = async (request, response) => {
     var password = request.body.password;
@@ -25,7 +25,7 @@ exports.Login = async (request, response) => {
     if (!doesMatch) return;
 
     let result = new Promise((resolve, reject) => {
-        jwt.sign({_id: user._id, username: user.username}, secret, {expiresIn: "1d"}, (err, token) => {
+        jwt.sign({_id: user._id, username: user.username}, secret, {expiresIn: period}, (err, token) => {
             if (err) return reject(err);
             else resolve (token);
         });

@@ -25,10 +25,14 @@ const cubeSchema = new mongoose.Schema({
             type: mongoose.Types.ObjectId,
             ref: 'Accessory'
         }
-    ]
+    ],
+    ownerId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
-cubeSchema.path('imageUrl').validate(function() {
+cubeSchema.path('imageUrl').validate(function () {
     return this.imageUrl.startsWith('http');
 }, 'Image url should be a link');
 
